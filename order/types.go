@@ -1,6 +1,6 @@
 package main 
 
-import "context	"
+import "context"
 
 
 
@@ -9,6 +9,6 @@ type OrderService interface {
  }
 
  type OrderStore interface {
-	create(context, Context, )error
+		Create(ctx context.Context) error
  }
  

@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/davidcreated/**)"
+    ],
+    "additionalDirectories": [
+      "/Users/davidcreated"
+    ]
+  }
+}

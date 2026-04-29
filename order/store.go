@@ -1,6 +1,14 @@
-package main 
+package main
+
+import "context"
+
 type store struct {
 	// add here our mongoDB
+}
+
+// Create implements [OrderStore].
+func (s *store) Create(ctx context.Context) error {
+	panic("unimplemented")
 }
 
 func NewStore() *store {

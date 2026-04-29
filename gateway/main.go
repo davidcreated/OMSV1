@@ -3,13 +3,16 @@ package main
 import (
 	"log"
 	"net/http"
-)
 
-const (
-	httpAddr = ":8080"
+	"github.com/OMSV1/common"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	godotenv.Load()
+
+	httpAddr := common.EnvString("HTTP_ADDR", ":3000")
+
 	mux := http.NewServeMux()
 	handler := NewHandler()
 	handler.registerRoutes(mux)
