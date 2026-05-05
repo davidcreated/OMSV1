@@ -1,34 +1,54 @@
 syntax = "proto3";
 
-
 package api;
 
-option go_package = "github.com/keptn/go-utils/pkg/api/oms;oms";
+option go_package = "github.com/OMSV1/common/api;api";
 
-
+// OmsService defines the gRPC service for the Order Management System (OMS)
 service OmsService {
-  rpc GetOrder(GetOrderRequest) returns (GetOrderResponse);
-
+  rpc GetOrder(GetOrderRequest) returns (Order);
+  rpc CreateOrder(CreateOrderRequest) returns (Order);
 }
 
-
+// GetOrderRequest represents the request for the GetOrder RPC method
 message GetOrderRequest {
-  string ID = 1;
-  int32 Quantity = 2;
+  string id = 1;
+  int32 quantity = 2;
 }
 
+
+message CreateOrderRequest {
+  string customer_id = 1;
+  repeated Item items = 2;
+}
+
+
+// GetOrderResponse represents the response for the GetOrder RPC method
 message GetOrderResponse {
-  string ID = 1;
-  string CustomerID = 2;
-  string Status = 3;
-  repeated ItemswithQuantity Items = 4;
-
+  string id = 1;
+  string customer_id = 2;
+  string status = 3;
+  repeated ItemswithQuantity items = 4;
 }
 
+// ItemswithQuantity represents an item with its quantity in the order
 message ItemswithQuantity {
-  string ID = 1;
-  int32 Quantity = 2;
+  string id = 1;
+  int32 quantity = 2;
 }
-message GetOrdersResponse {
-  repeated GetOrderResponse orders = 1;
+
+// Item represents an item in the order
+message Item {
+  string id = 1;
+  string name = 2;
+  int32 quantity = 3;
+  string price_id = 4;
+}
+
+// Order represents an order in the Order Management System (OMS)
+message Order {
+  string id = 1;
+  string customer_id = 2;
+  string status = 3;
+  repeated Item items = 4;
 }

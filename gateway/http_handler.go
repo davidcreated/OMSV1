@@ -1,13 +1,17 @@
 package main
 
-import "net/http"
+import (
+	"net/http"
+
+	pb "github.com/OMSV1/common/api"
+)
 
 type Handler struct {
-	// add here the service that we will use to handle the requests
+	client pb.OmsServiceClient
 }
 
-func NewHandler() *Handler {
-	return &Handler{}
+func NewHandler(client pb.OmsServiceClient) *Handler {
+	return &Handler{client: client}
 }
 
 func (h *Handler) registerRoutes(mux *http.ServeMux) {
@@ -15,5 +19,7 @@ func (h *Handler) registerRoutes(mux *http.ServeMux) {
 }
 
 func (h *Handler) HandleCreateOrder(w http.ResponseWriter, r *http.Request) {
-	// here we will add the code to handle the request to create an order
+	h.client.CreateOrder(r.Context(), &pb.CreateOrderRequest{
+		// fill in the request fields based on the incoming HTTP request
+	})
 }
